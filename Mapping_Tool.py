@@ -20,6 +20,7 @@ def ensure_punkt():
 
     nltk.data.path.append("nltk_data")
 
+ensure_punkt()
 
 from nltk.tokenize import sent_tokenize
 import os
