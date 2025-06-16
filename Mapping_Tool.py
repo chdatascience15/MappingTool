@@ -5,7 +5,22 @@ import numpy as np
 from docx import Document
 from docx.shared import RGBColor
 import tempfile
+
+import zipfile
 import nltk
+
+def ensure_punkt():
+    punkt_path = "nltk_data/tokenizers/punkt"
+    if not os.path.exists(punkt_path):
+        if os.path.exists("punkt.zip"):
+            with zipfile.ZipFile("punkt.zip", "r") as zip_ref:
+                zip_ref.extractall("nltk_data")
+        else:
+            raise FileNotFoundError("punkt.zip not found and punkt tokenizer is missing.")
+
+    nltk.data.path.append("nltk_data")
+
+
 from nltk.tokenize import sent_tokenize
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = ""
