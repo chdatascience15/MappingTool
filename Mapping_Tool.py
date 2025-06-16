@@ -10,16 +10,21 @@ import zipfile
 import nltk
 
 def ensure_punkt():
-    punkt_path = "nltk_data/tokenizers/punkt"
-    if not os.path.exists(punkt_path):
-        if os.path.exists("punkt.zip"):
-            with zipfile.ZipFile("punkt.zip", "r") as zip_ref:
+    punkt_dir = "nltk_data/tokenizers/punkt"
+    zip_file = "punkt.zip"
+
+    if not os.path.exists(punkt_dir):
+        if os.path.exists(zip_file):
+            st.info("Extracting punkt.zip...")
+            with zipfile.ZipFile(zip_file, "r") as zip_ref:
                 zip_ref.extractall("nltk_data")
         else:
-            raise FileNotFoundError("punkt.zip not found and punkt tokenizer is missing.")
+            st.error("punkt.zip not found and punkt tokenizer is missing.")
+            st.stop()
 
     nltk.data.path.append("nltk_data")
 
+# Call early in your script before you use sent_tokenize()
 ensure_punkt()
 
 from nltk.tokenize import sent_tokenize
