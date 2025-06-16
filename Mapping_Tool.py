@@ -17,7 +17,7 @@ except LookupError:
     nltk.download('punkt')
 
 # Load model
-model = SentenceTransformer('all-MiniLM-L6-v2')
+model = SentenceTransformer('all-MiniLM-L6-v2', device='cpu')
 
 
 # Functions
