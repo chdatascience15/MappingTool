@@ -8,7 +8,7 @@ import tempfile
 import nltk
 from nltk.tokenize import sent_tokenize
 import os
-
+os.environ["CUDA_VISIBLE_DEVICES"] = ""
 
 # Ensure NLTK punkt tokenizer is available
 try:
