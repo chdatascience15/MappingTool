@@ -1,0 +1,6 @@
+streamlit
+pandas
+sentence-transformers
+numpy
+python-docx
+nltk
